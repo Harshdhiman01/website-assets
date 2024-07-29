@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width-device-width, initial-scale=1.0">
+    <title>sick reveal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 class="counter">0</h1>
+
+    <div class="overlay">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+    <div class="container">
+        <nav>
+            <div>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            </div>
+            <div>
+                <a href="#">Playground</a>
+            </div>
+        </nav>
+
+        <div class="header">
+            <div class="h1">f</div>
+            <div class="h1">l</div>
+            <div class="h1">a</div>
+            <div class="h1">u</div>
+            <div class="h1">.</div>
+        </div>
+        <div class="hero">
+            <img src="./Purple tropical leaves.jpg" alt="" style="background-size:contain;">
+        </div>
+    </div> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" >
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+        </style>
+
+    <script>
+
+        function startLoader() {
+            let counterElement = document.querySelector(".counter");
+            let currentValue = 0;
+            
+            function updateCounter() {
+                if (currentValue === 100) {
+                    return;
+                }
+
+                currentValue += Math.floor(Math.random() * 10) + 1;
+                
+                if (currentValue > 100) {
+                    currentValue = 100;
+                }
+
+                counterElement.textContent = currentValue;
+
+                let delay = Math.floor(Math.random() * 200) + 50;
+                setTimeout(updateCounter, delay);
+            }
+
+            updateCounter();
+        }
+
+        startLoader();
+
+        gsap.to(".counter", 0.25, {
+            delay: 3.5,
+            opacity: 0,
+        });
+
+        gsap.to(".bar", 1.5, {
+            delay: 3.5,
+            height: 0,
+            stagger: {
+                amount: 0.5,
+            },
+            ease: "power4.inOut",
+        });
+
+        gsap.form(".h1", 1.5, {
+            delay: 4,
+            y: 700,
+            stagger: {
+                amount: 0.5,
+            },
+            ease: "power4.inOut",
+        });
+
+        gsap.from(".hero", 2, {
+            delay: 4.5,
+            y: 400,
+            ease: "power4.inOut",
+        });
+    </script>
+    
+</body>
+</html>
